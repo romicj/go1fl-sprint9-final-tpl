@@ -44,3 +44,25 @@ func TestMaximum(t *testing.T) {
 	}
 
 }
+
+func TestMaxChunks(t *testing.T) {
+	tests := []struct {
+		data        []int
+		expectedMax int
+	}{
+		{[]int{}, 0},
+		{[]int{1}, 1},
+		{[]int{-11}, 0},
+		{[]int{-3, 3}, 3},
+		{[]int{0}, 0},
+		{[]int{-1, 0, 3}, 3},
+		{[]int{111, 22}, 111},
+		{[]int{123, 126, 125}, 126},
+		{[]int{1, 2, 3, 4, 5, 6, 7, 8}, 8},
+		{[]int{1, 2, 3, 4, 5, 6, 7, 9, 10}, 10},
+	}
+	for _, test := range tests {
+		assert.Equal(t, maxChunks(test.data), test.expectedMax, fmt.Sprint("input data ", test.data))
+	}
+
+}
